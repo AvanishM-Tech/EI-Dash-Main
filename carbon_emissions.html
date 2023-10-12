@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Track Human Impact on the Environment - Carbon Emissions</title>
+</head>
+
+<body>
+    <header>
+        <h1>Environmental Impact Tracking Platform</h1>
+        <p>Monitoring Our Footprint</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="waste_production.html">Waste Production</a></li>
+            <li><a href="forest_area.html">Forest Area</a></li>
+            <li><a href="energy_consumption.html">Energy Consumption</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Carbon Emissions</h2>
+        <p>Explore carbon emissions by different countries and their environmental impact.</p>
+
+        <!-- Year selection dropdown -->
+        <label for="yearSelect">Select Year:</label>
+        <select id="yearSelect">
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+
+        </select>
+
+        <div id="carbonEmissionsChartContainer">
+            <canvas id="carbonEmissionsChart"></canvas>
+        </div>
+
+        <h3>Human Impact on the Environment</h3>
+        <p>
+            Our platform aims to provide valuable insights into human impact on the environment.
+            Carbon emissions are a significant contributor to environmental change. By tracking emissions data, we can
+            better understand our global footprint.
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="carbon_emissions_data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("carbonEmissionsChart").getContext("2d");
+
+            // Data for different years
+            const data2022 = {
+                labels: ["India", "China", "USA", "Russia", "Australia"],
+                datasets: [{
+                    label: 'Annual Carbon Emissions (in billions of metric tons)',
+                    data: [2.96, 10.10, 4.32, 1.56, 0.63],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const data2021 = {
+                labels: ["India", "China", "USA", "Russia", "Australia"],
+                datasets: [{
+                    label: 'Annual Carbon Emissions (in billions of metric tons)',
+                    data: [2.80, 9.80, 4.20, 1.50, 0.60],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+
+            let currentYearData = data2022;
+
+            const options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: currentYearData,
+                options: options
+            });
+
+            const yearSelect = document.getElementById("yearSelect");
+            yearSelect.addEventListener("change", function () {
+                const selectedYear = yearSelect.value;
+
+
+                if (selectedYear === "2021") {
+                    currentYearData = data2021;
+                } else {
+                    currentYearData = data2022; // Default to 2022 data
+                }
+
+
+                myChart.data = currentYearData;
+                myChart.update();
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2023 Environmental Impact Tracking Platform</p>
+    </footer>
+</body>
+
+</html>

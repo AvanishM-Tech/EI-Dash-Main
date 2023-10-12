@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Waste Production</title>
+</head>
+
+<body>
+    <header>
+        <h1>Waste Production Data Visualization</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Annual Waste Production by Country</h2>
+        <p>Here is a graph depicting waste production by different countries:</p>
+        <div id="wasteProductionChartContainer">
+            <canvas id="wasteProductionChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="waste_production_data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("wasteProductionChart").getContext("2d");
+
+
+            const data = {
+                labels: ["India", "China", "USA", "Russia", "Australia"],
+                datasets: [{
+                    label: 'Annual Waste Production per Capita (in metric tons) (2023)',
+                    data: [0.6, 13.7, 25.4, 7.1, 21.8],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2023 Ecosystem Data</p>
+    </footer>
+</body>
+
+</html>

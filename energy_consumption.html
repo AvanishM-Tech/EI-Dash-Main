@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Energy Consumption</title>
+</head>
+
+<body>
+    <header>
+        <h1>Energy Consumption Data Visualization</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Annual Energy Consumption by Country</h2>
+        <p>Here is a graph depicting energy consumption in different countries:</p>
+        <div id="energyConsumptionChartContainer">
+            <canvas id="energyConsumptionChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="energy_consumption_data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("energyConsumptionChart").getContext("2d");
+
+            const data = {
+                labels: ["India", "China", "USA", "Russia", "Australia"],
+                datasets: [{
+                    label: 'Annual Energy Consumption (in kWh per household) (2023)',
+                    data: [1100, 3500, 9000, 6500, 5000],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2023 Ecosystem Data</p>
+    </footer>
+</body>
+
+</html>

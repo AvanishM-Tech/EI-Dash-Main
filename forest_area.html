@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Forest Area</title>
+</head>
+
+<body>
+    <header>
+        <h1>Forest Area Data Visualization</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Forest Area by Country</h2>
+        <p>Here is a graph depicting forest area in different countries:</p>
+        <div id="forestAreaChartContainer">
+            <canvas id="forestAreaChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="forest_area_data.js"></script>
+    <script>
+        // Load and display forest area data using Chart.js
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("forestAreaChart").getContext("2d");
+
+            const data = {
+                labels: ["India", "China", "USA", "Russia", "Australia"],
+                datasets: [{
+                    label: 'Forest Area (in square miles) (2023)',
+                    data: [670000, 1828000, 3100000, 4916000, 1555000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2023 Ecosystem Data</p>
+    </footer>
+</body>
+
+</html>
